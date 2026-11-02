@@ -22,14 +22,14 @@ Regex rules written/gathered by me and a few others for any text replace plugin 
 | --- | --- | --- |
 | Discord | 1 | uses the cdn link for discord media |
 | Google Search | 2-4 | removes the extra junk from search links |
-| Tracking Parameters | 5-6 | removes `utm_*`, `fbclid`, `gclid` and friends |
+| Tracking Parameters | 5-6 | removes `utm_*`, `fbclid`, `gclid`, etc.. |
 | GitHub | 7-40 | shortens repo, PR, issue, commit, file, release and profile links |
 | Tenor | 41-42 | cleans up tenor gif links |
-| X & Twitter | 43-44 | makes post previews show up |
-| YouTube | 45-53 | cleans up links, removes share and playlist junk |
-| Reddit, Pixiv & Roblox | 54-56 | makes previews show up |
-| TikTok | 57-60 | makes previews show up, removes tracking |
-| Bluesky, Instagram, Giphy & Imgur | 61-64 | fixes previews, makes media links direct |
+| X & Twitter | 43-44 | makes post embeds show better |
+| YouTube | 45-53 | cleans up links, removes share and playlist params |
+| Reddit, Pixiv & Roblox | 54-56 | makes embeds show up |
+| TikTok | 57-60 | makes embeds show up, removes tracking |
+| Bluesky, Instagram, Giphy & Imgur | 61-64 | fixes embed, makes media links direct |
 | API Links | 65-66 | turns api urls into short labels |
 | X Share Tracking | 67 | removes `?s=...&t=...` from x post links |
 
