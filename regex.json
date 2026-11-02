@@ -1,0 +1,473 @@
+{
+    "regexRules": [
+        {
+            "name": "Discord Media",
+            "find": "/\\bhttps?:\\/\\/media\\.discordapp\\.net(?=(?::\\d+)?(?:[\\/?#\\s>)\\]]|$))(?!(?::\\d+)?\\/external(?:[\\/?#]|$))/gi",
+            "replace": "https://cdn.discordapp.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Google Search .P1 Fragment",
+            "find": "/(https?:\\/\\/(?:www\\.)?google\\.(?:co\\.|com\\.)?[a-z]{2,3}\\/search\\/?(?:\\?[^\\s<>)|#]*)?)#(?!q=)(?:[^\\s<>)|]*[^\\s<>)|.,;:!?'\"*~])?/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Google Search .P2 Mid",
+            "find": "/(?<=https?:\\/\\/(?:www\\.)?google\\.(?:co\\.|com\\.)?[a-z]{2,3}\\/search\\/?\\?(?:[^\\s<>)|#]*&)?)(?:(?!(?:q|udm|tbm|tbs|hl|gl|lr|cr|num|start|safe|filter|nfpr|pws|as_q|as_epq|as_oq|as_eq|as_nlo|as_nhi|as_qdr|as_sitesearch|as_filetype|as_occt|as_dt|as_rights|tbas|ibp|kgmid)(?:=|&))[^&\\s<>)|#]*&)+([^\\s<>)|#&])/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Google Search .P3 Last",
+            "find": "/(https?:\\/\\/(?:www\\.)?google\\.(?:co\\.|com\\.)?[a-z]{2,3}\\/search\\/?(?:\\?[^\\s<>)|#]*?)?)(?:(?:[?&](?!(?:q|udm|tbm|tbs|hl|gl|lr|cr|num|start|safe|filter|nfpr|pws|as_q|as_epq|as_oq|as_eq|as_nlo|as_nhi|as_qdr|as_sitesearch|as_filetype|as_occt|as_dt|as_rights|tbas|ibp|kgmid)(?:=|[#\\s<>)|]|$))[^&\\s<>)|#]*[^&\\s<>)|#.,;:!?'\"*~])+&*|&+)(?=[#.,;:!?'\"*~\\s<>)|]|$)/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Tracking .P1 Mid",
+            "find": "/(?<=https?:\\/\\/[^\\s<>)|]*[?&])(?:(?:utm_[\\w-]+|fbclid|gclid|gbraid|wbraid|dclid|msclkid|twclid|ttclid|yclid|igshid|igsh|mc_cid|mc_eid|ref_src|ref_url|mkt_tok|_hsenc|_hsmi|srsltid|mibextid|share_id|rdt|tt_medium|tt_content)=[^&\\s<>)|#]*&)+([^\\s<>)|])/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Tracking .P2 Last",
+            "find": "/(https?:\\/\\/[^\\s<>)|]*?)(?:[?&](?:utm_[\\w-]+|fbclid|gclid|gbraid|wbraid|dclid|msclkid|twclid|ttclid|yclid|igshid|igsh|mc_cid|mc_eid|ref_src|ref_url|mkt_tok|_hsenc|_hsmi|srsltid|mibextid|share_id|rdt|tt_medium|tt_content)=(?:[^&\\s<>)|#]*[^&\\s<>)|#.,;:!?'\"*_~])?)+(?=[#.,;:!?'\"*_~\\s<>)|]|$)/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P1 PR Commit",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pull\\/(?<n>\\d+)\\/commits\\/(?<full>(?<sha>[0-9a-f]{7})[0-9a-f]{0,57})\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Request #$<n>`@`$<sha>`](<https://github.com/$<repo>/pull/$<n>/commits/$<full>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P2 Commit",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/commit\\/(?<full>(?<sha>[0-9a-f]{7})[0-9a-f]{0,57})\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[$<repo>@`$<sha>`](<https://github.com/$<repo>/commit/$<full>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P3 PR Tabs",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pull\\/(?<n>\\d+)\\/(?<tab>files|commits|checks|changes)\\/?(?<q>\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Request #$<n> ($<tab>)`](<https://github.com/$<repo>/pull/$<n>/$<tab>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P4 PR Review",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pull\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#pullrequestreview-\\d+)>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Request #$<n> (review)`](<https://github.com/$<repo>/pull/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P5 PR Comment",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pull\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#(?:issuecomment-|discussion_r)\\d+)>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Request #$<n> (comment)`](<https://github.com/$<repo>/pull/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P6 Issue Comment",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/issues\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#issuecomment-\\d+)>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Issue #$<n> (comment)`](<https://github.com/$<repo>/issues/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P7 Discussion",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/discussions\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Discussion #$<n>`](<https://github.com/$<repo>/discussions/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P8 Pull Request",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pull\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Request #$<n>`](<https://github.com/$<repo>/pull/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P9 Issue",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/issues\\/(?<n>\\d+)\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Issue #$<n>`](<https://github.com/$<repo>/issues/$<n>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P10 Repo",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?!(?:orgs|organizations|settings|features|topics|marketplace|sponsors|users|apps|login|logout|signup|sessions?|collections|trending|explore|notifications|pulls|issues|discussions|codespaces|enterprises?|security|readme|resources|customer-stories|solutions|pricing|site|stars|new|import|account|join|watching|dashboard|git-guides|about|contact|events|search|sitemap|mobile|models|copilot|education|trust|support|partners|why-github|open-source|premium-support|team|blog|gist|password_reset|oauth|integrations|installations|invitations|identity)\\/)(?<user>[\\w-]+)\\/(?<repo>[\\w.-]+?)(?:\\.git)?\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?!\\.?[\\w/-])/gi",
+            "replace": "[`$<user>/$<repo>`](<https://github.com/$<user>/$<repo>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P11 PR List",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/pulls\\/?(?<q>\\?[^\\s#<>)\\]]*[\\w+%])?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Pull Requests`](<https://github.com/$<repo>/pulls$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P12 Actions Job",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/actions\\/runs\\/(?<run>\\d+)\\/job\\/(?<job>\\d+)\\/?(?<q>\\?[^\\s#<>)\\]]*[\\w%])?(?<hash>#[\\w:-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Actions Run #$<run> (job)`](<https://github.com/$<repo>/actions/runs/$<run>/job/$<job>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P13 Actions Run",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/actions\\/runs\\/(?<run>\\d+)\\/?(?<q>\\?[^\\s#<>)\\]]*[\\w%])?(?<hash>#[\\w:-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Actions Run #$<run>`](<https://github.com/$<repo>/actions/runs/$<run>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P14 Actions Workflow",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/actions\\/workflows\\/(?<wf>[\\w.-]+\\.ya?ml)\\/?(?<q>\\?[^\\s#<>)\\]]*[\\w+%])?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Actions ($<wf>)`](<https://github.com/$<repo>/actions/workflows/$<wf>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P15 Actions",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/actions\\/?(?<q>\\?[^\\s#<>)\\]]*[\\w+%])?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> Actions`](<https://github.com/$<repo>/actions$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P16 Line Range",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/(?<kind>blob|blame)\\/(?<rest>[^\\s?#<>)\\]|\\x60]*\\/(?<file>[^\\s?#<>)\\]|\\x60\\/]+))(?<q>\\?[^\\s#<>)\\]|\\x60]*\\w)?#(?<l1>L\\d+(?:C\\d+)?)-(?<l2>L\\d+(?:C\\d+)?)>?(?![\\w/&-])/gi",
+            "replace": "[`$<repo> — $<file> ($<l1>–$<l2>)`](<https://github.com/$<repo>/$<kind>/$<rest>$<q>#$<l1>-$<l2>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P17 Line",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/(?<kind>blob|blame)\\/(?<rest>[^\\s?#<>)\\]|\\x60]*\\/(?<file>[^\\s?#<>)\\]|\\x60\\/]+))(?<q>\\?[^\\s#<>)\\]|\\x60]*\\w)?#(?<l1>L\\d+(?:C\\d+)?)>?(?![\\w/&-])/gi",
+            "replace": "[`$<repo> — $<file> ($<l1>)`](<https://github.com/$<repo>/$<kind>/$<rest>$<q>#$<l1>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P18 Blob To Raw",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)(?<lt><)?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/(?:blob|raw)\\/(?<ref>[^\\s/?#<>()\\]|\\x60]+)\\/(?<path>(?:[^\\s/?#<>()\\]|\\x60]+\\/)*(?<file>[^\\s/?#<>()\\]|\\x60]*[^\\s/?#<>()\\]|\\x60.,;:!'\"*_~]))(?:\\?[^\\s#<>)\\]|\\x60]*[^\\s#<>)\\]|\\x60.,;:!'\"*_~])?(?<gt>>)?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — $<file>`]($<lt>https://raw.githubusercontent.com/$<repo>/$<ref>/$<path>$<gt>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P18b Raw",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)(?<lt><)?https?:\\/\\/raw\\.githubusercontent\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/(?<ref>[^\\s/?#<>()\\]|\\x60]+)\\/(?<path>(?:[^\\s/?#<>()\\]|\\x60]+\\/)*(?<file>[^\\s/?#<>()\\]|\\x60]*[^\\s/?#<>()\\]|\\x60.,;:!'\\\"*_~]))(?<q>\\?[^\\s#<>)\\]|\\x60]*[^\\s#<>)\\]|\\x60.,;:!'\\\"*_~])?(?<gt>>)?(?=[\\s)\\]<>*_~'\\\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\\\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — $<file>`]($<lt>https://raw.githubusercontent.com/$<repo>/$<ref>/$<path>$<q>$<gt>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P19 Release",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/releases\\/tag\\/(?<tag>[^\\s?#<>)\\]|\\x60]*[^\\s?#<>)\\]|\\x60.,;:!'\"*_~\\/])\\/?(?<hash>#[\\w-]*)?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — Release $<tag>`](<https://github.com/$<repo>/releases/tag/$<tag>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P20 Compare SHA",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/compare\\/(?<full1>(?<s1>[0-9a-f]{7})[0-9a-f]{0,33})(?<dots>\\.{2,3})(?<full2>(?<s2>[0-9a-f]{7})[0-9a-f]{0,33})\\/?(?<q>\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> — Compare $<s1>$<dots>$<s2>`](<https://github.com/$<repo>/compare/$<full1>$<dots>$<full2>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P21 Compare",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/compare\\/(?<base>(?:(?!\\.\\.)[^\\s?#<>)\\]|\\x60])+)(?<dots>\\.{2,3})(?<head>[^\\s?#<>)\\]|\\x60]*[^\\s?#<>)\\]|\\x60.,;:!'\"*_~\\/])\\/?(?<q>\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — Compare $<base>$<dots>$<head>`](<https://github.com/$<repo>/compare/$<base>$<dots>$<head>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P22 Compare Single",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/compare\\/(?![^\\s?#<>)\\]|\\x60]*\\.\\.)(?<head>[^\\s?#<>)\\]|\\x60]*[^\\s?#<>)\\]|\\x60.,;:!'\"*_~\\/])\\/?(?<q>\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — Compare $<head>`](<https://github.com/$<repo>/compare/$<head>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P23 Tree SHA",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/tree\\/(?<full>(?<sha>[0-9a-f]{7})[0-9a-f]{0,33})\\/?(?:\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> — Tree $<sha>`](<https://github.com/$<repo>/tree/$<full>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P24 Branch",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/tree\\/(?<ref>[^\\s/?#<>)\\]|\\x60]*[^\\s/?#<>)\\]|\\x60.,;:!'\"*_~])\\/?(?:\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — Branch $<ref>`](<https://github.com/$<repo>/tree/$<ref>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P25 Tree Path",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/tree\\/(?<ref>[^\\s?#<>)\\]|\\x60]*[^\\s?#<>)\\]|\\x60.,;:!'\"*_~\\/])\\/?(?:\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — Tree $<ref>`](<https://github.com/$<repo>/tree/$<ref>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P26 Profile Tab",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?!(?:orgs|organizations|settings|features|topics|marketplace|sponsors|users|apps|login|logout|signup|sessions?|collections|trending|explore|notifications|pulls|issues|discussions|codespaces|enterprises?|security|readme|resources|customer-stories|solutions|pricing|site|stars|new|import|account|join|watching|dashboard|git-guides|about|contact|events|search|sitemap|mobile|models|copilot|education|trust|support|partners|why-github|open-source|premium-support|team|blog|gist|password_reset|oauth|integrations|installations|invitations|identity)(?![\\w-]))(?<user>[a-z\\d](?:[\\w-]{0,37}[a-z\\d])?)(?![\\w-])\\/?\\?tab=(?<tab>[a-z][a-z-]{1,30})(?![\\w-])(?<rest>&[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`@$<user> ($<tab>)`](<https://github.com/$<user>?tab=$<tab>$<rest>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P27 Profile",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?!(?:orgs|organizations|settings|features|topics|marketplace|sponsors|users|apps|login|logout|signup|sessions?|collections|trending|explore|notifications|pulls|issues|discussions|codespaces|enterprises?|security|readme|resources|customer-stories|solutions|pricing|site|stars|new|import|account|join|watching|dashboard|git-guides|about|contact|events|search|sitemap|mobile|models|copilot|education|trust|support|partners|why-github|open-source|premium-support|team|blog|gist|password_reset|oauth|integrations|installations|invitations|identity)(?![\\w-]))(?<user>[a-z\\d](?:[\\w-]{0,37}[a-z\\d])?)(?![\\w-])\\/?(?:\\?[^\\s#<>)\\]|\\x60]*\\w)?(?<hash>#[\\w-]*)?>?(?!\\.?[\\w/-])/gi",
+            "replace": "[`@$<user>`](<https://github.com/$<user>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P28 Gist",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/gist\\.github\\.com\\/(?<user>[\\w-]+)\\/(?<id>(?<short>[0-9a-f]{7})[0-9a-f]{0,33})\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?!\\.?[\\w/-])/gi",
+            "replace": "[`$<user> — Gist $<short>`](<https://gist.github.com/$<user>/$<id>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P29 Wiki",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/wiki\\/(?<page>[^\\s?#<>)\\]|\\x60]*[^\\s?#<>)\\]|\\x60.,;:!'\"*_~\\/])\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?![\\w/])/gi",
+            "replace": "[`$<repo> — Wiki $<page>`](<https://github.com/$<repo>/wiki/$<page>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P29b Wiki Index",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/wiki\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?!\\.?[\\w/-])/gi",
+            "replace": "[`$<repo> — Wiki`](<https://github.com/$<repo>/wiki$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P30 Releases",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/releases(?<latest>\\/latest)?\\/?(?:\\?[^\\s#<>)\\]]*\\w)?(?<hash>#[\\w-]*)?>?(?!\\.?[\\w/-])/gi",
+            "replace": "[`$<repo> — Releases$<latest>`](<https://github.com/$<repo>/releases$<latest>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P31 Latest Download",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/releases\\/latest\\/download\\/(?<file>[^\\s/?#<>)\\]|\\x60]*[^\\s/?#<>)\\]|\\x60.,;:!'\"*_~])(?:\\?[^\\s#<>)\\]|\\x60]*[^\\s#<>)\\]|\\x60.,;:!'\"*_~])?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — $<file> (latest)`](<https://github.com/$<repo>/releases/latest/download/$<file>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "GitHub .P32 Release Download",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?https?:\\/\\/(?:www\\.|redirect\\.|to)?github\\.com\\/(?<repo>[\\w-]+\\/[\\w.-]+)\\/releases\\/download\\/(?<tag>[^\\s/?#<>)\\]|\\x60]+)\\/(?<file>[^\\s/?#<>)\\]|\\x60]*[^\\s/?#<>)\\]|\\x60.,;:!'\"*_~])(?:\\?[^\\s#<>)\\]|\\x60]*[^\\s#<>)\\]|\\x60.,;:!'\"*_~])?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<repo> — $<file> ($<tag>)`](<https://github.com/$<repo>/releases/download/$<tag>/$<file>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Tenor .P1",
+            "find": "/(https?:\\/\\/media\\d*\\.tenor\\.com\\/m\\/[^\\s?#<>)|]*[^\\s?#<>)|.,;:!'\\\"*_~])(?:\\?[^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~])?/gi",
+            "replace": "$1?download=1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Tenor .P2",
+            "find": "/https?:\\/\\/(?:www\\.)?tenor\\.com\\/(?:[a-z]{2}(?:[-_][a-z0-9]{2,4})?\\/)?view(?=\\/)/gi",
+            "replace": "https://tenor.com/view",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "X",
+            "find": "/https?:\\/\\/(?:(?:www|mobile|m)\\.)?(?:x|fixupx|fixvx)\\.com(?=\\/(?:i\\/web|\\w+)\\/status\\/\\d)/gi",
+            "replace": "https://hotyurisex.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Twitter",
+            "find": "/https?:\\/\\/(?:(?:www|mobile|m)\\.)?twitter\\.com(?=\\/(?:i\\/web|\\w+)\\/status\\/\\d)/gi",
+            "replace": "https://vxtwitter.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P1",
+            "find": "/https?:\\/\\/(?:www\\.)?youtu\\.be\\/([\\w-]+)\\?([^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~])/gi",
+            "replace": "https://www.youtube.com/watch?v=$1&$2",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P2",
+            "find": "/https?:\\/\\/(?:www\\.)?youtu\\.be\\/([\\w-]+)/gi",
+            "replace": "https://www.youtube.com/watch?v=$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P2b Shorts Query",
+            "find": "/https?:\\/\\/(?:www\\.|m\\.)?youtube\\.com\\/shorts\\/([\\w-]+)\\/?\\?([^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~])/gi",
+            "replace": "https://www.youtube.com/watch?v=$1&$2",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P2c Shorts",
+            "find": "/https?:\\/\\/(?:www\\.|m\\.)?youtube\\.com\\/shorts\\/([\\w-]+)\\/?/gi",
+            "replace": "https://www.youtube.com/watch?v=$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P3",
+            "find": "/(?<=https?:\\/\\/(?:www\\.|m\\.|music\\.)?youtube\\.com\\/[^\\s<>)|]*[?&])(?:(?:si|pp|feature|t|time_continue|start)=[^&\\s<>)|#]*&)+([^\\s<>)|])/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P4",
+            "find": "/(https?:\\/\\/(?:www\\.|m\\.|music\\.)?youtube\\.com\\/[^\\s<>)|]*?)(?:[?&](?:si|pp|feature|t|time_continue|start)=(?:[^&\\s<>)|#]*[^&\\s<>)|#.,;:!?'\"*_~])?)+(?=[#.,;:!?'\"*_~\\s<>)|]|$)/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P5",
+            "find": "/(?<=https?:\\/\\/(?:www\\.|m\\.|music\\.)?youtube\\.com\\/watch(?=\\?(?:[^\\s<>)|]*&)?v=)[^\\s<>)|]*[?&])(?:(?:list|index|start_radio)=[^&\\s<>)|#]*&)+([^\\s<>)|])/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P6",
+            "find": "/(https?:\\/\\/(?:www\\.|m\\.|music\\.)?youtube\\.com\\/watch(?=\\?(?:[^\\s<>)|]*&)?v=)[^\\s<>)|]*?)(?:[?&](?:list|index|start_radio)=(?:[^&\\s<>)|#]*[^&\\s<>)|#.,;:!?'\"*_~])?)+(?=[#.,;:!?'\"*_~\\s<>)|]|$)/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Youtube .P7",
+            "find": "/(https?:\\/\\/(?:www\\.|m\\.|music\\.)?youtube\\.com\\/watch\\?[^\\s<>)|#]*)#t=[^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~]/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Reddit",
+            "find": "/https?:\\/\\/(?:(?:www|old|new|np|m|amp)\\.)?reddit\\.com(?=\\/(?:(?:r|u|user)\\/[\\w-]+\\/(?:comments|s)\\/|comments\\/|gallery\\/)\\w)/gi",
+            "replace": "https://vxreddit.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Pixiv",
+            "find": "/https?:\\/\\/(?:www\\.)?pixiv\\.net(?=\\/(?:[a-z]{2}(?:_[a-z]{2})?\\/)?artworks\\/\\d|\\/member_illust\\.php\\?(?:\\S*&)?illust_id=\\d)/gi",
+            "replace": "https://phixiv.net",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Roblox",
+            "find": "/https?:\\/\\/(?:www\\.|web\\.)?roblox\\.com(?=\\/(?:[a-z]{2}(?:-[a-z]{2})?\\/)?(?:games|users|catalog|groups|communities|bundles|game-pass|badges|library|share)(?![\\w-]))/gi",
+            "replace": "https://www.fxroblox.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "TikTok .P1",
+            "find": "/https?:\\/\\/(vm|vt)\\.(?:tiktok|vxtiktok|tiktxk)\\.com(?=\\/\\w)/gi",
+            "replace": "https://$1.tnktok.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "TikTok .P2",
+            "find": "/https?:\\/\\/(?:(?:www|m)\\.)?(?:tiktok|vxtiktok|tiktxk)\\.com(?=\\/(?:@[\\w.]*\\/(?:(?:video|photo)\\/\\d|live(?![\\w-]))|t\\/\\w))/gi",
+            "replace": "https://tnktok.com",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "TikTok Query .P1",
+            "find": "/(https?:\\/\\/(?:vm|vt)\\.(?:tiktok|tnktok|vxtiktok|tiktxk)\\.com\\/\\w+\\/?)\\?(?![^\\s#<>)|]*\\bhq=)[^\\s#<>)|]*[^\\s#<>)|.,;:!?'\"*_~]/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "TikTok Query .P2",
+            "find": "/(https?:\\/\\/(?:(?:www|m|d|a|hq)\\.)?(?:tiktok|tnktok|vxtiktok|tiktxk)\\.com\\/(?:@[\\w.]*\\/(?:video|photo)\\/\\d+|t\\/\\w+)\\/?)\\?(?![^\\s#<>)|]*\\bhq=)[^\\s#<>)|]*[^\\s#<>)|.,;:!?'\"*_~]/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Bluesky",
+            "find": "/https?:\\/\\/(?:www\\.)?bsky\\.app(?=\\/profile\\/[^\\/\\s]+\\/post\\/)/gi",
+            "replace": "https://fxbsky.app",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Instagram",
+            "find": "/https?:\\/\\/(?:(?:www\\.|m\\.)?instagram\\.com|instagr\\.am|(?:www\\.)?kkinstagram\\.com)\\/((?:[\\w.]+\\/)?(?:reels?|p|tv|share|stories)(?![\\w.])\\/[^\\/?#\\s<>)|][^?#\\s<>)|]*)(?:[?#][^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~])?/gi",
+            "replace": "https://www.oginstagram.com/$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Giphy",
+            "find": "/https?:\\/\\/(?:www\\.)?giphy\\.com\\/(?:gifs|stickers|embed)\\/(?:[^\\/?#\\s<>)|]*-)?([a-z0-9]+)(?![\\w-])\\/?(?:[?#][^\\s<>)|]*[^\\s<>)|.,;:!?'\"*_~])?/gi",
+            "replace": "https://media.giphy.com/media/$1/giphy.gif",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "Imgur",
+            "find": "/https?:\\/\\/(?:i\\.)?imgur\\.com\\/(\\w+)\\.gifv(?![\\w-])/gi",
+            "replace": "https://i.imgur.com/$1.mp4",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "API .P1 With Query",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?(?<scheme>https?):\\/\\/(?<host>(?:[a-z\\d-]{1,63}\\.){0,3}api(?:-[a-z\\d-]{1,63})?\\.(?:[a-z\\d-]{1,63}\\.){0,4}[a-z][a-z\\d-]{1,62}(?::\\d{1,5})?)(?<path>\\/(?:[^\\s?#<>)\\[\\]|\\x60]*[^\\s?#<>)\\[\\]|\\x60.,;:!'\"*_~])?)?(?<q>\\?[^\\s#<>)|\\x60]*[^\\s#<>)\\]|\\x60.,;:!'\"*_~])(?<hash>#[^\\s<>)\\]|\\x60]*[^\\s<>)\\]|\\x60.,;:!'\"*_~])?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<host>$<path>?…`](<$<scheme>://$<host>$<path>$<q>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "API .P2 Plain",
+            "find": "/(?<![\\w@/.=\\x60\\[-]|\\]\\(<?)<?(?<scheme>https?):\\/\\/(?<host>(?:[a-z\\d-]{1,63}\\.){0,3}api(?:-[a-z\\d-]{1,63})?\\.(?:[a-z\\d-]{1,63}\\.){0,4}[a-z][a-z\\d-]{1,62}(?::\\d{1,5})?)(?<path>\\/(?:[^\\s?#<>)\\[\\]|\\x60]*[^\\s?#<>)\\[\\]|\\x60.,;:!'\"*_~])?)?(?<hash>#[^\\s<>)\\]|\\x60]*[^\\s<>)\\]|\\x60.,;:!'\"*_~])?>?(?=[\\s)\\]<>*_~'\"\\x60]|\\|\\||$|[.,;:!?]+(?:[\\s)\\]<>*_~'\"\\x60]|\\|\\||$))/gi",
+            "replace": "[`$<host>$<path>`](<$<scheme>://$<host>$<path>$<hash>>)",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        },
+        {
+            "name": "X Share Tracking",
+            "find": "/(https?:\\/\\/(?:(?:www|mobile|m)\\.)?(?:x|twitter|fixupx|fixvx|vxtwitter|fxtwitter|hotyurisex)\\.com\\/(?:i\\/web|\\w+)\\/status\\/\\d+(?:\\/[^\\s?#<>)|]*)?)\\?[^\\s#<>)|]*[^\\s#<>)|.,;:!?'\"*_~]/gi",
+            "replace": "$1",
+            "onlyIfIncludes": "",
+            "scope": "allMessages"
+        }
+    ]
+}
