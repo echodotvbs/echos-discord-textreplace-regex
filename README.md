@@ -1,8 +1,8 @@
-# Discord Link Regex
+# Discord TextReplace Regex
 
 Regex rules written/gathered by me and a few others for any text replace plugin on Discord
 
-## What it does
+## About
 
 - removes tracking stuff from links (`utm_*`, `fbclid`, youtube `si=`, google extras, etc)
 - fixes embeds for x, twitter, reddit, tiktok, instagram, bluesky, pixiv and roblox
@@ -45,7 +45,7 @@ every rule in `regex.json` has;
 | `onlyIfIncludes` | only runs if the message has spefic text in it |
 | `scope` | where it applies (`allMessages`) |
 
-## Notes
+## Extra notice
 
 - rules run top to bottom so dont mess with the order
 - the embed fixers (x, twitter, reddit, tiktok, etc) use 3rd party sites. if one dies just find an alternate embed fixer domain or delete that rule
