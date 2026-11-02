@@ -6,19 +6,19 @@ Regex rules written/gathered by me and a few others for any text replace plugin 
 
 - removes tracking stuff from links (`utm_*`, `fbclid`, youtube `si=`, google extras, etc)
 - fixes embeds for x, twitter, reddit, tiktok, instagram, bluesky, pixiv and roblox
-- shortens long github links into something readable
+- shortens long github links into prettified links
 - cleans up youtube shorts, `youtu.be`, giphy, imgur and tenor links
 
 ## Files
 
-| File | What it is |
+| File | Desc |
 | --- | --- |
 | [`regex.json`](regex.json) | rule set |
 | [`RULES.md`](RULES.md) | explanation and previews |
 
 ## Overview thingy
 
-| Category | Rules | What it does |
+| Category | Rules | Meaning |
 | --- | --- | --- |
 | Discord | 1 | uses the cdn link for discord media |
 | Google Search | 2-4 | removes the extra junk from search links |
@@ -33,13 +33,11 @@ Regex rules written/gathered by me and a few others for any text replace plugin 
 | API Links | 65-66 | turns api urls into short labels |
 | X Share Tracking | 67 | removes `?s=...&t=...` from x post links |
 
-full breakdown at [`RULES.md`](RULES.md)
-
 ## Rule format
 
 every rule in `regex.json` has;
 
-| Field | What it means |
+| Field | Meaning |
 | --- | --- |
 | `name` | name of rule |
 | `find` | what it finds |
