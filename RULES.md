@@ -1458,3 +1458,24 @@ $1
 Before: https://x.com/user/status/123456?s=20&t=abc
 After:  https://x.com/user/status/123456
 ```
+
+### Hyperlink anyhting
+
+convert anything into a hyperlink. the text must comne first, and the link must be the last thing before --hyp, and it needs http:// or https://
+
+find:
+
+```
+/^(.*?\S)\s+(https?:\/\/\S+)\s*--hyp\s*$/gis
+```
+
+replace:
+
+```
+[$1](<$2>)
+```
+
+```
+Before: hi testing https://example.com --hyp
+After:  [hi testing](<https://example.com>)
+```
