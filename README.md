@@ -44,7 +44,7 @@ every rule in `regex.json` has;
 | `find` | what it finds |
 | `replace` | what it replaces with |
 | `onlyIfIncludes` | only runs if the message has spefic text in it |
-| `scope` | where it applies (`allMessages`) |
+| `scope` | where it applies (`allMessages`), (`myMessages`) |
 
 ## Extra notice
 
