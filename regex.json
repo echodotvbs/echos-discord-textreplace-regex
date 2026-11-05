@@ -472,7 +472,7 @@
         },
         {
             "name": "Hyperlink Arguement",
-            "find": "^([\\s\\S]*?\\S)\\s+(https?:\\/\\/\\S+)\\s*--hyp\\s*$",
+            "find": "/^(.*?\S)\s+(https?:\/\/\S+)\s*--hyp\s*$/gis",
             "replace": "[$1](<$2>)",
             "onlyIfIncludes": "",
             "scope": "myMessages"
