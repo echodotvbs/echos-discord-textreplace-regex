@@ -298,7 +298,7 @@
         {
             "name": "X",
             "find": "/https?:\\/\\/(?:(?:www|mobile|m)\\.)?(?:x|fixupx|fixvx)\\.com(?=\\/(?:i\\/web|\\w+)\\/status\\/\\d)/gi",
-            "replace": "https://hotyurisex.com",
+            "replace": "https://hamburgerx.com",
             "onlyIfIncludes": "",
             "scope": "allMessages"
         },
@@ -472,7 +472,7 @@
         },
         {
             "name": "Hyperlink Arguement",
-            "find": "/^(.*?\S)\s+(https?:\/\/\S+)\s*--hyp\s*$/gis",
+            "find": "/^(.*?\\S)\\s+(https?:\\/\\/\\S+)\\s*--hyp\\s*$/gis",
             "replace": "[$1](<$2>)",
             "onlyIfIncludes": "",
             "scope": "myMessages"
