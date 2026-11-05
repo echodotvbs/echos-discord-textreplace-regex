@@ -32,6 +32,7 @@ Regex rules written/gathered by me and a few others for any text replace plugin 
 | Bluesky, Instagram, Giphy & Imgur | 61-64 | fixes embed, makes media links direct |
 | API Links | 65-66 | turns api urls into short labels |
 | X Share Tracking | 67 | removes `?s=...&t=...` from x post links |
+| Hyperlink arguement | 68 | makes any message containing a text at the start and a link at the end into a hyperlink with "--hyp" arguement at the very end |
 
 ## Rule format
 
