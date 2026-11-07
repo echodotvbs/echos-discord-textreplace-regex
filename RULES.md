@@ -1151,7 +1151,7 @@ After:  https://www.youtube.com/watch?v=abc123
 
 ### 54. Reddit
 
-swap reddit post links to `vxreddit.com` so the embed shows up
+swap reddit post links to `redditez.com` so the embed shows up
 
 find:
 
@@ -1162,12 +1162,12 @@ find:
 replace:
 
 ```
-https://vxreddit.com
+https://redditez.com
 ```
 
 ```
 Before: https://www.reddit.com/r/test/comments/abc123/title/
-After:  https://vxreddit.com/r/test/comments/abc123/title/
+After:  https://redditez.com/r/test/comments/abc123/title/
 ```
 
 ### 55. Pixiv
