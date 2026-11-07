@@ -375,7 +375,7 @@
         {
             "name": "Reddit",
             "find": "/https?:\\/\\/(?:(?:www|old|new|np|m|amp)\\.)?reddit\\.com(?=\\/(?:(?:r|u|user)\\/[\\w-]+\\/(?:comments|s)\\/|comments\\/|gallery\\/)\\w)/gi",
-            "replace": "https://vxreddit.com",
+            "replace": "https://redditez.com",
             "onlyIfIncludes": "",
             "scope": "allMessages"
         },
